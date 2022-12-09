@@ -1,5 +1,4 @@
 import numpy as np
-from settings import *
 from nltk.stem import WordNetLemmatizer
 
 wnl = WordNetLemmatizer()
@@ -7,7 +6,7 @@ wnl = WordNetLemmatizer()
 def set_words(documents):
 
 	for document in documents:
-		doc = ((document.title + " ") * int(TITLE_STRENGTH)) + document.author + " " + ((document.abstract + " ") * int(ABSTRACT_STRENGTH))
+		doc = document.title + " " + document.author + " " + document.abstract
 		document.words = []
 		word = ""
 		for i in range(len(doc)):
@@ -32,7 +31,7 @@ def set_tfidf(documents, vocab, reverse_vocab, idf):
 		document.tfidf = document.tf * idf
 		document.tfidf /= np.linalg.norm(document.tfidf)
 
-def find_best_documents(query, documents, nb, type):
+def find_best_documents(query, documents, nb, type, K1 = 0.5, B = 0.5):
 
 	scores = np.zeros(len(documents))
 

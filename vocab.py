@@ -1,5 +1,4 @@
 import numpy as np
-from document import Document
 
 def clear_words(vocab):
 
@@ -36,7 +35,7 @@ def get_vocab(documents):
 			if w[1] != 0:
 				vocab.append(w)
 
-		print("Document " + str(document.id), end = "\r")
+		print("Document " + str(document.id) + " done.", end = "\r")
 
 	vocab.sort(key = lambda x: x[1], reverse = True)
 	vocab = clear_words(vocab)
